@@ -1,8 +1,8 @@
-"=================================================================================
-"general
-"=================================================================================
 
+
+ccccccnnivneigccfvuhktrnhftlkjdkktnljubfcdge
 syntax on
+
 set ma
 set mouse=a
 set cursorline
@@ -15,21 +15,14 @@ set nowritebackup
 set noswapfile
 set nu 
 set foldlevelstart=99
+
 syntax enable
 set scrolloff=7
-
-"==================================================================================
-"plugins
-"==================================================================================
 
 call plug#begin('~/.config/nvim/autoload/')
 
 "Colour scheme
-" My fave colour schemes:
-" dracula/dracula-theme, rakr/vim-one, gosukiwi/vim-atom-dark,
-" phanviet/vim-monokai-pro rhysd/vim-color-spring-night arzg/vim-colors-xcode
-" kyoz/purify
-Plug 'arzg/vim-colors-xcode'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 "Syntax plugin
 Plug 'vim-syntastic/syntastic'
@@ -41,16 +34,12 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 "Autocomplete plugin
 "Also do :CocInstall coc-clangd coc-tsserver coc-eslint coc-json coc-prettier coc-css coc-python coc-java 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sheerun/vim-polyglot'
-
 
 "Nav plugins
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'preservim/NERDTree'
 Plug 'jiangmiao/auto-pairs'
-
-"Buffer Navigation - vim-airline
 Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 
@@ -63,16 +52,10 @@ Plug 'sbdchd/neoformat'
 "Code folding
 Plug 'tmhedberg/SimpylFold'
 
-"Haskell
-Plug 'neovimhaskell/haskell-vim'
-Plug 'alx741/vim-hindent'
-
 call plug#end()
 
 "Aesthetic? Maybe
-":colorscheme spring-night 
-:colorscheme xcodedarkhc 
-:set background=dark
+colorscheme dracula
 
 "Definitions
 "<leader>d: go to definition
@@ -84,30 +67,14 @@ call plug#end()
 "let g:neomake_python_enabled_makers = ['flake8']
 "call neomake#configure#automake('nrwi', 500)
 
-"==============================================================================
-"key combos
-"==============================================================================
-
 set encoding=UTF-8
 let mapleader = " "
-"Navigate buffers
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprevious<CR>
-nnoremap <leader>bf :bfirst<CR>
-nnoremap <leader>bl :blast<CR>
-
-"Other
 nnoremap <leader><CR> :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ne :NERDTreeToggle<CR>
-nnoremap <leader>f :call CocAction('format')<CR>
 
 autocmd StdinReadPre * let s:std
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | :vertical resize 60 | endif
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-"==============================================================================
-" plugin configs
-"==============================================================================
 
 
 "Allow NERDTree to show hidden files"
@@ -140,7 +107,6 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 
 "Enable smarter tab line
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " Focus and redistribute split windows
 noremap ff :resize 100 <CR> <BAR> :vertical resize 220<CR>
