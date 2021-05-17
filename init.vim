@@ -8,6 +8,7 @@ set mouse=a
 set cursorline
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
 set expandtab
 set autoread
 set nobackup
@@ -43,12 +44,14 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 
+"Debugging
+Plug 'puremourning/vimspector'
 
 "Nav plugins
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'preservim/NERDTree'
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 
 "Buffer Navigation - vim-airline
 Plug 'vim-airline/vim-airline'
@@ -66,6 +69,12 @@ Plug 'tmhedberg/SimpylFold'
 "Haskell
 Plug 'neovimhaskell/haskell-vim'
 Plug 'alx741/vim-hindent'
+
+"Go
+Plug 'fatih/vim-go'
+
+"Grammar checking because I can't english
+Plug 'rhysd/vim-grammarous'
 
 call plug#end()
 
@@ -100,6 +109,7 @@ nnoremap <leader>bl :blast<CR>
 nnoremap <leader><CR> :source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ne :NERDTreeToggle<CR>
 nnoremap <leader>f :call CocAction('format')<CR>
+
 
 autocmd StdinReadPre * let s:std
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | :vertical resize 60 | endif
