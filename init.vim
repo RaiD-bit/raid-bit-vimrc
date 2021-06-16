@@ -49,7 +49,10 @@ Plug 'puremourning/vimspector'
 "Nav plugins
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'preservim/NERDTree'
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+            \ Plug 'ryanoasis/vim-devicons'
+
 "Plug 'jiangmiao/auto-pairs'
 
 "Buffer Navigation - vim-airline
@@ -102,7 +105,7 @@ let mapleader = " "
 
 "NERDCommenter
 map <leader>/ <plug>NERDCommenterToggle
-
+vmap <leader>/ <plug>NERDCommenterToggle<CR> gv
 " mappings to move code blocks up and down
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -112,7 +115,8 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " toggle nerd tree
-nnoremap <leader>ne :NERDTreeToggle<CR>
+nnoremap <F2> :NERDTreeToggle %<CR>
+
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
@@ -143,6 +147,23 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 "Allow NERDTree to show hidden files"
 let NERDTreeShowHidden=1
+let NERDTreeQuitOnOpen=1
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+
 let g:python3_host_prog='/usr/bin/python3'
 
 " sync open file with NERDTree
