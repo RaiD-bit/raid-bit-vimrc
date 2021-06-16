@@ -14,11 +14,10 @@ set autoread
 set nobackup
 set nowritebackup
 set noswapfile
-set nu 
+set nu rnu
 set foldlevelstart=99
 syntax enable
 set scrolloff=7
-
 "==================================================================================
 "plugins
 "==================================================================================
@@ -71,7 +70,8 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'alx741/vim-hindent'
 
 "Go
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 
 "Grammar checking because I can't english
 Plug 'rhysd/vim-grammarous'
@@ -99,9 +99,30 @@ call plug#end()
 
 set encoding=UTF-8
 let mapleader = " "
+
+"NERDCommenter
+map <leader>/ <plug>NERDCommenterToggle
+
+" mappings to move code blocks up and down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" toggle nerd tree
+nnoremap <leader>ne :NERDTreeToggle<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <Leader>+ :vertical resize +5<CR>
+nnoremap <Leader>- :vertical resize -5<CR>
+
 "Navigate buffers
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprevious<CR>
+nnoremap <TAB> :bnext<CR>
+nnoremap <S-TAB> :bprevious<CR>
 nnoremap <leader>bf :bfirst<CR>
 nnoremap <leader>bl :blast<CR>
 
@@ -153,7 +174,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " Focus and redistribute split windows
+" go full screen press ff
 noremap ff :resize 100 <CR> <BAR> :vertical resize 220<CR>
+" undo full screen press fm
 noremap fm <C-w>=
 
 " Use CTRL+c to copy to system clipboard
