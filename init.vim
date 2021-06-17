@@ -471,3 +471,12 @@ let g:mkdp_filetypes = ['markdown']
 nnoremap <C-mp>MarkdownPreview
 "<Plug>MarkdownPreviewStop
 "<Plug>MarkdownPreviewToggle
+
+filetype on
+filetype indent on
+set mp=g++\ -O2\ -Wall\ --std=c++17\ -Wno-unused-result\ %:r.cpp\ -o\ %:r
+nmap <F3> :vs %:r.in <CR>
+nmap <F4> :!time ./%:r < %:r.in <CR>
+autocmd filetype cpp nnoremap <F4> :w <CR> :make<CR>
+autocmd filetype cpp nnoremap <F5> :w <bar> :make <bar> :!time ./%:r < %:r.in <CR>
+autocmd filetype python nnoremap <F5> :w <bar> !python3 %:r.py < %:r.in <CR>
